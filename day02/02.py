@@ -1,0 +1,5 @@
+KM = 1000
+M =100
+CM =10
+END =(CM*M*KM)
+print(10*END)
