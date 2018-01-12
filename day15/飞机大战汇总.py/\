@@ -1,0 +1,13 @@
+import pygame
+from plan_sprite import *
+class PlaneGame(object):
+    '''飞机大战的主程序类'''
+    def __init__(self):
+        #1 
+    def start_game(self):
+        pass
+if __name__ =='__main__':
+    #创建游戏
+    game = PlanGame()
+    #开始游戏
+    game.start_game()
