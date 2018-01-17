@@ -45,6 +45,9 @@ class Enemy(GameSprite):
         self.rect.bottom = 0
         max_x = SCREEN_RECT.width - self.rect.width
         self.rect.x = random.randint(0,max_x)
+        #创建一个子弹精灵组
+        self.bullet1 = pygame.sprite.Group()
+        self.enemybullet = pygame.sprite.Group()
     
     def update(self):
         #1 调用父类的方法  让敌机在垂直方向运动
@@ -52,9 +55,26 @@ class Enemy(GameSprite):
         #2 判断是否废除屏幕  如果是  需要将敌机从精灵组 删除
         if self.rect.y >= SCREEN_RECT.height:
             self.kill()
+    def fire(self):
+        #for i in (-1,3,3):
+        #创建子弹
+        bullet1 = EnemyBullet()
+        #设置子弹的位置 
+        #self.bullet1.rect.bottom = self.rect.y + 2
+        #self.bullet1.rect.centerx = self.rect.centerx
+        self.enemybullet.add(bullet1)
     
     def __del__(self) :
         print('敌机挂掉了%s'%self.rect)
+class EnemyBullet(GameSprite):
+    '''子弹精灵类''' 
+    def __init__(self):
+        super().__init__('/mnt/images/bullet1.png',5)
+        
+    def update(self):
+        super().update()
+        if self.rect.top > SCREEN_RECT.height:
+            self.kill()
       
 
 class Hero(GameSprite):
@@ -75,16 +95,14 @@ class Hero(GameSprite):
             self.rect.right = SCREEN_RECT.right
    
     def fire(self):
-        #for i in (-1,3,3):
-        #创建子弹
-        bullet = Bullet()
-        #设置子弹的位置 
-        bullet.rect.bottom = self.rect.y - 20
-        bullet.rect.centerx = self.rect.centerx
-        bullet.rect.bottom = self.rect.y - 20
-        bullet.rect.centerx = self.rect.centerx
-        # 将子弹添加到精灵组
-        self.bullets.add(bullet)
+        for i in (-1,3,3):
+            #创建子弹
+            bullet = Bullet()
+            #设置子弹的位置 
+            bullet.rect.bottom = self.rect.y - 20
+            bullet.rect.centerx = self.rect.centerx
+            # 将子弹添加到精灵组
+            self.bullets.add(bullet)
 
 class Bullet(GameSprite):
     '''子弹精灵类''' 

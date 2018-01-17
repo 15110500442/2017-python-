@@ -43,7 +43,8 @@ class PlaneGame(object):
         bg2.rect.y = -bg2.rect.height
         self.back_group = pygame.sprite.Group(bg1,bg2)
         #  敌机精灵组
-        self.enemy_group = pygame.sprite.Group()
+        self.enemy = Enemy()
+        self.enemy_group = pygame.sprite.Group(self.enemy)
         #  英雄精灵组
         self.hero = Hero()
         self.hero2 = Hero()
@@ -60,15 +61,16 @@ class PlaneGame(object):
             if event.type == pygame.QUIT:
                 PlaneGame.__game_over()
             elif event.type == CREATE_ENEMY_EVENT:
-                enemy = Enemy()
-                self.enemy_group.add(enemy)
+                self.enemy = Enemy()
+                self.enemy_group.add(self.enemy)
+                self.enemy.fire()
             elif event.type == HERO_FIRE_EVENT:
                 self.hero.fire()
                 self.hero2.fire()
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE:
-                    self.hero.fire()
-                elif event.type == 271:
+                #if event.key == pygame.K_SPACE:
+                #    self.hero.fire()
+                if event.type == 271:
                     self.hero2.fire()
         keys_pressed = pygame.key.get_pressed()
        
@@ -87,10 +89,11 @@ class PlaneGame(object):
             self.hero.speed = 2
         elif keys_pressed[pygame.K_LEFT]:
             self.hero.speed = -2
-        #elif keys_pressed[271]:
-        #    self.hero.fire()
-        #elif keys_pressed[pygame.K_SPACE]:
-        #    self.hero2.fire()
+        elif keys_pressed[271]:
+            self.hero.fire()
+        elif keys_pressed[pygame.K_SPACE]:
+            self.hero2.fire()
+        
         else:
             self.hero.speed = 0
 
@@ -116,21 +119,23 @@ class PlaneGame(object):
             PlaneGame.__game_over()
 
     
-    
+   
     def __update_sprites(self):
         '''更新精灵组'''
-        for group in [self.back_group,self.enemy_group,self.hero_group,self.hero.bullets]:
+        for group in [self.back_group,self.enemy_group,self.hero_group,self.hero.bullets,self.hero2.bullets,self.enemy.enemybullet]:
             #更新精灵组里面所有精灵的位置
             group.update()
             #绘制到屏幕上
             group.draw(self.screen)
             self.hero_group.update()
             self.hero_group.draw(self.screen)
-        self.hero.bullets.update()
-        self.hero.bullets.draw(self.screen)
-        
-        self.hero2.bullets.update()
-        self.hero2.bullets.draw(self.screen)
+       # self.hero.bullets.update()
+       # self.hero.bullets.draw(self.screen)
+       # 
+       # self.hero2.bullets.update()
+       # self.hero2.bullets.draw(self.screen)
+       # self.enemy.bullets.update()
+       # self.enemy.bullets.draw(self.screen)
              #静态方法
     @staticmethod
     
