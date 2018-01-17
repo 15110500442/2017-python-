@@ -1,0 +1,7 @@
+name = input("请输入你的姓名")
+zhanghao = input("请输入你的账号")
+password =  input("请输入你的密码")
+yy = input("请输入原有余额")
+yq = input("请输入要取余额")
+sum = int(yy) - int(yq)
+print("姓名:%s"%name,"账号:%d"%int(zhanghao),"密码:%d"%int(password),"原有余额:%d"%int(yy),"要取余额:%d"%int(yq),"剩余:%d"%int(sum))

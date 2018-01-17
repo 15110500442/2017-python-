@@ -1,0 +1,7 @@
+cjd = input("请输入你的成绩单")
+if cjd > 60:
+    print("通过")
+elif cjd < 60:
+    print("不通过")
+else:
+    print("补考")
