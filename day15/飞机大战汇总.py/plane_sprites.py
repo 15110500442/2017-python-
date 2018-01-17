@@ -1,7 +1,7 @@
 import random
 import pygame
 #游戏屏幕的大小
-SCREEN_RECT = pygame.Rect(0,0,1024,768)#  这是一个常量
+SCREEN_RECT = pygame.Rect(0,0,600,800)#  这是一个常量
 #敌机的常量
 CREATE_ENEMY_EVENT = pygame.USEREVENT
 HERO_FIRE_EVENT = pygame.USEREVENT + 1
@@ -99,7 +99,7 @@ class Hero(GameSprite):
             #创建子弹
             bullet = Bullet()
             #设置子弹的位置 
-            bullet.rect.bottom = self.rect.y - 20
+            bullet.rect.bottom = self.rect.y - 20 -1
             bullet.rect.centerx = self.rect.centerx
             # 将子弹添加到精灵组
             self.bullets.add(bullet)

@@ -1,5 +1,5 @@
-L = []
-for i in range(1,100):
+
+for i in range(100,1000):
     
     for j in range(2,i):
         

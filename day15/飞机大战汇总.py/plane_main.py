@@ -38,8 +38,9 @@ class PlaneGame(object):
         '''创建精灵和精灵组'''
          #pygame.sprite.Group()可以创建一个精灵组
         #  背景精灵组
-        bg1 = Backgroup('/mnt/images/01535957bea52b0000018c1b79aad8.jpg@1280w_1l_2o_100sh.jpg')
-        bg2 = Backgroup('/mnt/images/01535957bea52b0000018c1b79aad8.jpg@1280w_1l_2o_100sh.jpg')
+        bg1 = Backgroup('/mnt/images/20071125_6995c52f19dd2bb80e22vjzXhEtL4KJt.jpg')
+        
+        bg2 = Backgroup('/mnt/images/20071125_6995c52f19dd2bb80e22vjzXhEtL4KJt.jpg')
         bg2.rect.y = -bg2.rect.height
         self.back_group = pygame.sprite.Group(bg1,bg2)
         #  敌机精灵组
